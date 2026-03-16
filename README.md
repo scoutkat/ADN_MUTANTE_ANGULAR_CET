@@ -123,17 +123,24 @@ but detected Angular version 21.2.4 instead.
 
 **Solución:**
 ```bash
-# 1. Limpiar caché de npm
+# 1. Desinstalar Angular CLI global
+npm uninstall -g @angular/cli
+
+# 2. Instalar versión correcta
+npm install -g @angular/cli@20
+
+# 3. Limpiar caché
 npm cache clean --force
 
-# 2. Eliminar node_modules y package-lock.json
+# 4. Eliminar dependencias locales
 rm -rf node_modules package-lock.json
 
-# 3. Reinstalar dependencias
+# 5. Reinstalar dependencias del proyecto
 npm install
 
-# 4. Verificar que Angular CLI sea versión 20
+# 6. Verificar versiones
 ng version
+# Debe mostrar: Angular CLI: 20.x.x, Angular: 20.x.x
 ```
 
 ### Pasos para Instalar y Levantar el Servidor
@@ -151,7 +158,7 @@ ng version
    ```
    
    Esto instalará automáticamente:
-   - Angular 21
+   - Angular 20
    - TypeScript
    - Tailwind CSS
    - PostCSS
@@ -181,34 +188,6 @@ ng version
    - La aplicación se recargará automáticamente al modificar archivos
 
 ### Posibles Problemas y Soluciones
-
-#### ⚠️ Error de compatibilidad de Angular (MÁS COMÚN)
-```
-Error: The current version of "@angular/build" supports Angular versions ^20.0.0,
-but detected Angular version 21.2.4 instead.
-```
-
-**Solución completa:**
-```bash
-# 1. Desinstalar Angular CLI global
-npm uninstall -g @angular/cli
-
-# 2. Instalar versión correcta
-npm install -g @angular/cli@20
-
-# 3. Limpiar caché
-npm cache clean --force
-
-# 4. Eliminar dependencias locales
-rm -rf node_modules package-lock.json
-
-# 5. Reinstalar dependencias del proyecto
-npm install
-
-# 6. Verificar versiones
-ng version
-# Debe mostrar: Angular CLI: 20.x.x, Angular: 20.x.x
-```
 
 #### Si Tailwind CSS no funciona:
 ```bash
