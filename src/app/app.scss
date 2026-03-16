@@ -1,0 +1,33 @@
+/* Estilos adicionales para complementar Tailwind CSS */
+
+/* Animaciones personalizadas */
+.animate-delay-75 {
+  animation-delay: 75ms;
+}
+
+.animate-delay-150 {
+  animation-delay: 150ms;
+}
+
+/* Estilos para inputs de ADN */
+.dna-input {
+  transition: all 0.2s ease;
+}
+
+.dna-input:focus {
+  transform: scale(1.05);
+}
+
+/* Efectos hover adicionales */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Gradientes personalizados si son necesarios */
+.bg-gradient-dna {
+  background: linear-gradient(135deg, #1e3a8a 0%, #eab308 100%);
+}
