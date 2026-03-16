@@ -87,6 +87,22 @@ isMutant(dna: string[]): boolean
 
 ## Instalación y Ejecución
 
+### 🪟 Comandos para Usuarios Windows
+
+Si estás en Windows, usa estos comandos en lugar de `rm -rf`:
+
+```powershell
+# Eliminar carpetas y archivos
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+Remove-Item -Recurse -Force .angular
+
+# O alternativamente
+rmdir /s /q node_modules
+rmdir /s /q .angular
+del package-lock.json
+```
+
 ### Prerrequisitos
 
 Antes de levantar el servidor local, asegúrate de tener instalado:
@@ -133,7 +149,13 @@ npm install -g @angular/cli@20
 npm cache clean --force
 
 # 4. Eliminar dependencias locales
-rm -rf node_modules package-lock.json
+# Linux/macOS:
+rm -rf node_modules package-lock.json .angular
+
+# Windows:
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+Remove-Item -Recurse -Force .angular
 
 # 5. Reinstalar dependencias del proyecto
 npm install
@@ -201,10 +223,19 @@ npm install zone.js@~0.14.0
 
 # 2. Limpiar caché y reinstalar
 npm cache clean --force
+
+# Eliminar dependencias locales
+# Linux/macOS:
 rm -rf node_modules package-lock.json
+
+# Windows:
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+
+# 3. Reinstalar dependencias
 npm install
 
-# 3. Reiniciar servidor
+# 4. Reiniciar servidor
 ng serve
 ```
 
@@ -220,7 +251,14 @@ npm error peerOptional vitest@"^3.1.1" from @angular/build@20.3.20
 ```bash
 # 1. Limpiar caché y dependencias
 npm cache clean --force
+
+# Eliminar dependencias locales
+# Linux/macOS:
 rm -rf node_modules package-lock.json
+
+# Windows:
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
 
 # 2. Instalar con --legacy-peer-deps (acepta dependencias incompatibles temporalmente)
 npm install --legacy-peer-deps
@@ -247,7 +285,12 @@ npm install -g @angular/cli@20
 npm cache clean --force
 
 # 4. Eliminar dependencias locales
+# Linux/macOS:
 rm -rf node_modules package-lock.json
+
+# Windows:
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
 
 # 5. Reinstalar dependencias del proyecto
 npm install
