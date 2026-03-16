@@ -32,7 +32,7 @@ Resultado: **MUTANTE**
 
 ## Tecnologías Utilizadas
 
-- **Angular 21** - Framework frontend
+- **Angular 20** - Framework frontend
 - **TypeScript** - Lenguaje tipado
 - **Tailwind CSS** - Framework CSS para diseño moderno
 - **SCSS** - Preprocesador CSS para estilos personalizados
@@ -88,30 +88,161 @@ isMutant(dna: string[]): boolean
 ## Instalación y Ejecución
 
 ### Prerrequisitos
-- Node.js 18+ 
-- Angular CLI 21+
 
-### Pasos para levantar el servidor
+Antes de levantar el servidor local, asegúrate de tener instalado:
+
+1. **Node.js** (versión 18 o superior)
+   ```bash
+   # Verificar versión instalada
+   node --version
+   # Si no está instalado, descargar desde: https://nodejs.org/
+   ```
+
+2. **Angular CLI** (versión 20 - IMPORTANTE)
+   ```bash
+   # Instalar versión específica compatible
+   npm install -g @angular/cli@20
+   # Verificar versión
+   ng version
+   ```
+
+3. **Git** (para clonar el repositorio)
+   ```bash
+   # Verificar instalación
+   git --version
+   # Si no está instalado, descargar desde: https://git-scm.com/
+   ```
+
+### ⚠️ IMPORTANTE: Problema de Compatibilidad
+
+Si ves este error:
+```
+Error: The current version of "@angular/build" supports Angular versions ^20.0.0,
+but detected Angular version 21.2.4 instead.
+```
+
+**Solución:**
+```bash
+# 1. Limpiar caché de npm
+npm cache clean --force
+
+# 2. Eliminar node_modules y package-lock.json
+rm -rf node_modules package-lock.json
+
+# 3. Reinstalar dependencias
+npm install
+
+# 4. Verificar que Angular CLI sea versión 20
+ng version
+```
+
+### Pasos para Instalar y Levantar el Servidor
 
 1. **Clonar el repositorio**
    ```bash
-   git clone <repository-url>
-   cd mutant-detector
+   git clone https://github.com/scoutkat/ADN_MUTANTE_ANGULAR_CET.git
+   cd ADN_MUTANTE_ANGULAR_CET
    ```
 
-2. **Instalar dependencias**
+2. **Instalar dependencias del proyecto**
    ```bash
+   # Instalar todas las dependencias necesarias
    npm install
    ```
+   
+   Esto instalará automáticamente:
+   - Angular 21
+   - TypeScript
+   - Tailwind CSS
+   - PostCSS
+   - Autoprefixer
+   - Todas las dependencias de desarrollo
 
-3. **Iniciar servidor de desarrollo**
+3. **Verificar instalación de Tailwind CSS**
    ```bash
-   ng serve
+   # Verificar que Tailwind esté instalado
+   npx tailwindcss --version
    ```
 
-4. **Abrir la aplicación**
-   - Navegar a http://localhost:4200
+4. **Iniciar servidor de desarrollo**
+   ```bash
+   # Opción 1: Iniciar en puerto por defecto (4200)
+   ng serve
+   
+   # Opción 2: Iniciar en puerto específico
+   ng serve --port 4200
+   
+   # Opción 3: Iniciar con host accesible desde red
+   ng serve --host 0.0.0.0 --port 4200
+   ```
+
+5. **Abrir la aplicación**
+   - Navegar a: http://localhost:4200
    - La aplicación se recargará automáticamente al modificar archivos
+
+### Posibles Problemas y Soluciones
+
+#### ⚠️ Error de compatibilidad de Angular (MÁS COMÚN)
+```
+Error: The current version of "@angular/build" supports Angular versions ^20.0.0,
+but detected Angular version 21.2.4 instead.
+```
+
+**Solución completa:**
+```bash
+# 1. Desinstalar Angular CLI global
+npm uninstall -g @angular/cli
+
+# 2. Instalar versión correcta
+npm install -g @angular/cli@20
+
+# 3. Limpiar caché
+npm cache clean --force
+
+# 4. Eliminar dependencias locales
+rm -rf node_modules package-lock.json
+
+# 5. Reinstalar dependencias del proyecto
+npm install
+
+# 6. Verificar versiones
+ng version
+# Debe mostrar: Angular CLI: 20.x.x, Angular: 20.x.x
+```
+
+#### Si Tailwind CSS no funciona:
+```bash
+# Reinstalar Tailwind CSS
+npm uninstall tailwindcss postcss autoprefixer
+npm install -D tailwindcss@^3.4.0 postcss@^8.4.0 autoprefixer@^10.4.0
+
+# Reiniciar servidor
+ng serve
+```
+
+#### Si hay problemas de permisos en Windows:
+```bash
+# Ejecutar PowerShell como Administrador
+# O usar:
+npm install --force
+```
+
+#### Si el puerto 4200 está ocupado:
+```bash
+# Usar otro puerto
+ng serve --port 4300
+# O matar procesos en el puerto
+npx kill-port 4200
+```
+
+### Verificación de Instalación Correcta
+
+El servidor está funcionando correctamente cuando vees:
+- ✅ Gradiente azul oscuro a amarillo en el fondo
+- ✅ Cards blancas con sombras
+- ✅ Inputs de ADN con colores distintivos
+- ✅ Botones funcionales con efectos hover
+- ✅ Sin errores en la consola del navegador
 
 ### Construcción para Producción
 ```bash
