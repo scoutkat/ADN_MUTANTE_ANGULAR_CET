@@ -211,6 +211,37 @@ ng version
 
 ### Posibles Problemas y Soluciones
 
+#### ⚠️ Error de compatibilidad de zone.js
+```
+npm error ERESOLVE could not resolve
+npm error While resolving: @angular/core@20.3.18
+npm error Found: zone.js@0.14.10
+npm error peerOptional zone.js@"~0.15.0" from @angular/core@20.3.18
+```
+
+**Solución:**
+```bash
+# 1. Instalar zone.js versión correcta
+npm install zone.js@~0.15.0
+
+# 2. Limpiar caché y reinstalar
+npm cache clean --force
+
+# Eliminar dependencias locales
+# Linux/macOS:
+rm -rf node_modules package-lock.json
+
+# Windows:
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+
+# 3. Reinstalar dependencias
+npm install
+
+# 4. Reiniciar servidor
+ng serve
+```
+
 #### ⚠️ Error NG0908: Zone.js requerido
 ```
 Error: NG0908: In this configuration Angular requires Zone.js
