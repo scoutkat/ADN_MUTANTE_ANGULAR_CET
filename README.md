@@ -189,6 +189,74 @@ ng version
 
 ### Posibles Problemas y Soluciones
 
+#### ⚠️ Error NG0908: Zone.js requerido
+```
+Error: NG0908: In this configuration Angular requires Zone.js
+```
+
+**Solución:**
+```bash
+# 1. Instalar zone.js manualmente
+npm install zone.js@~0.14.0
+
+# 2. Limpiar caché y reinstalar
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+
+# 3. Reiniciar servidor
+ng serve
+```
+
+#### ⚠️ Error de dependencias (vitest compatibility)
+```
+npm error ERESOLVE could not resolve
+npm error While resolving: @angular/build@20.3.20
+npm error Found: vitest@4.1.0
+npm error peerOptional vitest@"^3.1.1" from @angular/build@20.3.20
+```
+
+**Solución:**
+```bash
+# 1. Limpiar caché y dependencias
+npm cache clean --force
+rm -rf node_modules package-lock.json
+
+# 2. Instalar con --legacy-peer-deps (acepta dependencias incompatibles temporalmente)
+npm install --legacy-peer-deps
+
+# 3. Si el problema persiste, instalar vitest compatible manualmente
+npm install vitest@3.1.1 --save-dev
+```
+
+#### ⚠️ Error de compatibilidad de Angular (MÁS COMÚN)
+```
+Error: The current version of "@angular/build" supports Angular versions ^20.0.0,
+but detected Angular version 21.2.4 instead.
+```
+
+**Solución completa:**
+```bash
+# 1. Desinstalar Angular CLI global
+npm uninstall -g @angular/cli
+
+# 2. Instalar versión correcta
+npm install -g @angular/cli@20
+
+# 3. Limpiar caché
+npm cache clean --force
+
+# 4. Eliminar dependencias locales
+rm -rf node_modules package-lock.json
+
+# 5. Reinstalar dependencias del proyecto
+npm install
+
+# 6. Verificar versiones
+ng version
+# Debe mostrar: Angular CLI: 20.x.x, Angular: 20.x.x
+```
+
 #### Si Tailwind CSS no funciona:
 ```bash
 # Reinstalar Tailwind CSS
